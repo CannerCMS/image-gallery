@@ -20,8 +20,8 @@ class Demo extends React.Component {
         onCreate={(item) => console.log(item)}
         onSwap={(from, to) => console.log(from, to)}
         serviceConfig={new ImgurService({
-          mashapeKey: 'bF1fkS9EKrmshtCbRspDUxPL5yhCp1rzz8ejsnqLqwI2KQC3s9',
-          clientId: 'a214c4836559c77'
+          mashapeKey: '<mashapeKey>',
+          clientId: '<clientId>'
         })}
       />
     );
