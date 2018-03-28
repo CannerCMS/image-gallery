@@ -9,7 +9,8 @@
     "url": ""
   },
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "main": "lib/index.js",
   "keywords": [
@@ -66,7 +67,7 @@
     "test:watch": "jest --watch",
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --mode development",
     "gh-pages:clean": "rimraf _gh-pages && ncp ./docs ./_gh-pages",
-    "gh-pages:build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.ghPage.js",
+    "gh-pages:build": "cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.ghPages.js",
     "gh-pages:publish": "git-directory-deploy --directory _gh-pages",
     "gh-pages": "npm run gh-pages:clean && npm run gh-pages:build && npm run gh-pages:publish",
     "validate": "npm ls"
