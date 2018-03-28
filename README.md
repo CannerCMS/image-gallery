@@ -1,4 +1,6 @@
 # canner-image-gallery [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/image-gallery.svg?token=62b0040cd9c1c2987e58709306c6e575db0370e67a8d8e460937887118118798&ts=1522228458209)](https://greenkeeper.io/)
 > A image gallery
 
 ## Installation
