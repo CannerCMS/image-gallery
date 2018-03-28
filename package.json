@@ -1,7 +1,7 @@
 {
   "name": "canner-image-gallery",
-  "version": "0.0.0",
-  "description": "A image gallery",
+  "version": "0.1.0",
+  "description": "A image gallery for CannerIO",
   "homepage": "",
   "author": {
     "name": "chilijung",
