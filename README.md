@@ -39,7 +39,7 @@ class Demo extends React.Component {
 
 ```
 
-## API
+## Props
 
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
