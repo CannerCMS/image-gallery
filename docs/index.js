@@ -29,5 +29,9 @@ class Demo extends React.Component {
 }
 
 ReactDOM.render(
-  <Demo/>
+  <div style={{maxWidth: '800px', margin: '0 auto'}}>
+    <h2>Gallery demo</h2>
+    <hr/>
+    <Demo/>
+  </div>
 , document.getElementById('root'));
