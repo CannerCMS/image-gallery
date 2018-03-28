@@ -47,7 +47,7 @@ class Demo extends React.Component {
 | renderContent | `(index: number) => React.Element<*>` | undefined | If this is defined, a edit button will rendered in each photo  |
 | contentTitle | `string?` | undefined | The popup content's title |
 | onDelete | `(index: number) => void` | undefined | Called when the photo is deleted  |
-| onCreate | `({index: number, image: string}` | `Array<{index: number, image: string}>) => void` | undefined | Called when the photo is created  |
+| onCreate | `({index: number, image: string}|Array<{index: number, image: string}>) => void` | undefined | Called when the photo is created  |
 | onSwap | `({fromIndex: number, toIndex: number}) => void` | undefined | Called when the photo is swapped  |
 | serviceConfig | depends on services | undefined | pass image configurations generate from: https://github.com/Canner/image-service-config |
 
