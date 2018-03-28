@@ -2907,10 +2907,6 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
 
-ev-emitter@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ev-emitter/-/ev-emitter-1.1.1.tgz#8f18b0ce5c76a5d18017f71c0a795c65b9138f2a"
-
 eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
@@ -3609,9 +3605,9 @@ grid-breakpoint@^1.6.2:
     react-flexbox-grid "^2.0.0"
     react-window-detect-dimensions "^0.2.0"
 
-grid-draggable@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/grid-draggable/-/grid-draggable-3.2.0.tgz#8c88eb476d7e9559404f4e036a64ab1c882a6efa"
+grid-draggable@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/grid-draggable/-/grid-draggable-3.2.2.tgz#7d5ae390928ce7ed244f36ea9a9ddc7337e4ee6c"
   dependencies:
     grid-breakpoint "^1.6.2"
     lodash.pickby "^4.6.0"
@@ -3943,12 +3939,6 @@ ignore@^3.3.3:
 image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
-
-imagesloaded@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.4.tgz#1376efcd162bb768c34c3727ac89cc04051f3cc7"
-  dependencies:
-    ev-emitter "^1.0.0"
 
 immutable@^3.7.4:
   version "3.8.2"

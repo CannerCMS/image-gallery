@@ -9,7 +9,7 @@ type Props = {
 
 const AddContainer = styled.div`
   width: 100%;
-	height: 324px;
+	height: 292px;
 	display: flex;
 	border: 1px dashed #CCC;
 	text-align: center;

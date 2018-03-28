@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import GridDraggable, { Section } from "grid-draggable";
+import {Modal} from 'antd';
 import GridBreakpoint from "grid-breakpoint";
 import ImageUpload from "@canner/image-upload";
 import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
@@ -16,6 +17,7 @@ type ImageItem = {
 type Props = {
   value: Array<string>,
   disableDrag: boolean,
+  contentTitle?: string,
   renderContent?: (index: number) => React.Element<*>,
   onDelete?: (index: number) => void,
   onCreate?: (ImageItem | Array<ImageItem>) => void,
@@ -24,7 +26,9 @@ type Props = {
 }
 
 type State = {
-  editPopup: boolean
+  editPopup: boolean,
+  showContentPopup: boolean,
+  currentContent: ?number
 }
 
 export default class Gallery extends React.Component<Props, State> {
@@ -32,7 +36,9 @@ export default class Gallery extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      editPopup: false
+      editPopup: false,
+      showContentPopup: false,
+      currentContent: undefined
     };
   }
 
@@ -84,15 +90,30 @@ export default class Gallery extends React.Component<Props, State> {
       onDelete(imageId)
   };
 
+  showContent = (id: number) => {
+    this.setState({
+      showContentPopup: true,
+      currentContent: id
+    })
+  }
+
+  hideContent = () => {
+    this.setState({
+      showContentPopup: false,
+      currentContent: undefined
+    })
+  }
+
   render() {
-    const { editPopup } = this.state;
-    const { value, disableDrag, serviceConfig } = this.props;
+    const { editPopup, showContentPopup, currentContent } = this.state;
+    const { value, disableDrag, serviceConfig, renderContent, contentTitle } = this.props;
     let list = value.map((item, i) => {
       if (disableDrag) {
         return (
           <Item
             image={item}
             disableDrag={disableDrag}
+            showContent={renderContent && this.showContent}
             deleteImage={this.deleteImage}
             id={i}
             key={i}
@@ -101,10 +122,18 @@ export default class Gallery extends React.Component<Props, State> {
       }
 
       return (
-        <Section key={i} handle=".handle" style={{height: '300px'}}>
+        <Section
+          key={i}
+          handle=".handle"
+          dragStyle={{
+            width: '300px',
+            height: '200px',
+            opacity: 0.4
+          }}>
           <Item
             image={item}
             disableDrag={disableDrag}
+            showContent={renderContent && this.showContent}
             deleteImage={this.deleteImage}
             id={i}
             key={i}
@@ -121,10 +150,27 @@ export default class Gallery extends React.Component<Props, State> {
             {list}
           </GridBreakpoint>
         ) : (
-          <GridDraggable onSwap={this.onSwap} lg={4} md={6} sm={12} xs={12}>
+          <GridDraggable
+            onSwap={this.onSwap}
+            lg={4} md={4} sm={12} xs={12}>
             {list}
           </GridDraggable>
         )}
+        {renderContent &&
+          <Modal
+            title={contentTitle}
+            visible={showContentPopup}
+            footer={null}
+            onCancel={this.hideContent}
+          >
+            {
+              currentContent !== null &&
+              currentContent !== undefined &&
+              renderContent(currentContent)
+            }
+          </Modal>
+        }
+
         <ImageUpload
           onChange={this.addImages}
           editPopup={editPopup}

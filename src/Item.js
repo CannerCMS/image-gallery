@@ -1,35 +1,38 @@
 // @flow
-import React, { Component } from "react";
-import imagesLoaded from "imagesloaded";
+import * as React from "react";
+import ImageLoader from 'react-loading-image';
+import styled from 'styled-components';
 import { Card, Button, Icon } from "antd";
+
+const PreviewImg = styled.div`
+  margin-top: 15px;
+  background-image: url(${props => props.src});
+  width: 100%;
+  height: 200px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+`;
+
+const BtnContainer = styled.div`
+  float: right;
+
+  button {
+    margin: 0 3px;
+  }
+`;
 
 type Props = {
   id: number,
   image: string,
   deleteImage: (id: number) => void,
+  showContent?: (id: number) => void,
   disableDrag: boolean
 }
 
-export default class Item extends Component<Props> {
+export default class Item extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-  }
-
-  imgWrapper: ?HTMLDivElement;
-  showImage: ?HTMLImageElement;
-
-  static defaultProps = {
-    cardWidth: "100%"
-  };
-
-  componentDidMount() {
-    var that = this;
-    var imgLoad = imagesLoaded(this.imgWrapper);
-    imgLoad.on("fail", function() {
-      if (that.showImage) {
-        that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
-      }
-    });
   }
 
   deleteImage = () => {
@@ -38,25 +41,35 @@ export default class Item extends Component<Props> {
   }
 
   render() {
-    const { image, disableDrag } = this.props;
+    const { image, disableDrag, showContent, id } = this.props;
     return (
-      <div style={{padding: '5px'}}>
-        <Card>
-          <div ref={node => (this.imgWrapper = node)}>
-            <img style={{width: '300px', height: '200px'}} ref={showImage => (this.showImage = showImage)} src={image} />
-          </div>
-          <div styleName="custom-card" className="custom-card">
-            {!disableDrag ? (
-              <Button type="primary" className="handle">
-                <Icon type="swap" />
-              </Button>
-            ) : null}
-            <Button onClick={this.deleteImage} className="remove-button">
-              <Icon type="cross" />
+      <Card
+        hoverable
+        style={{margin: '5px'}}
+        cover={
+          <ImageLoader
+            src={image}
+            image={props => <PreviewImg {...props}/>} // change to your customized component
+            loading={() => <div>Loading...</div>}
+            error={() => <div>Error</div>}
+          />
+        }>
+        <BtnContainer>
+          {!disableDrag && (
+            <Button type="primary" className="handle">
+              <Icon type="swap" />
             </Button>
-          </div>
-        </Card>
-      </div>
+          )}
+          {showContent && (
+            <Button onClick={() => showContent(id)}>
+              <Icon type="edit" />
+            </Button>
+          )}
+          <Button onClick={this.deleteImage} type="danger">
+            <Icon type="cross" />
+          </Button>
+        </BtnContainer>
+      </Card>
     );
   }
 }
