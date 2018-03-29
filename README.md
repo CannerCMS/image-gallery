@@ -44,6 +44,7 @@ class Demo extends React.Component {
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
 | value | `Array<string>` | undefined | Array of your photo's url |
+| disableDrag | `boolean` | false | Whether gallery is draggable |
 | renderContent | `(index: number) => React.Element<*>` | undefined | If this is defined, a edit button will rendered in each photo  |
 | contentTitle | `string?` | undefined | The popup content's title |
 | onDelete | `(index: number) => void` | undefined | Called when the photo is deleted  |
