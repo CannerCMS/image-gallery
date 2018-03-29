@@ -61,7 +61,7 @@
     "clean": "rimraf lib dist",
     "build:es5": "./node_modules/.bin/babel src --out-dir lib",
     "build": "npm run build:es5 && npm run build:flow",
-    "prepublish": "npm run clean && npm run check:src && npm run build",
+    "prepublish": "npm run clean && npm run check:src && npm run build && npm run gh-pages",
     "check:src": "npm run lint && npm run test",
     "test": "jest",
     "test:watch": "jest --watch",
