@@ -14,6 +14,15 @@ const PreviewImg = styled.div`
   background-repeat: no-repeat;
 `;
 
+const Loading = styled.div`
+  margin-top: 15px;
+  width: 100%;
+  height: 200px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+`
+
 const BtnContainer = styled.div`
   float: right;
 
@@ -50,8 +59,8 @@ export default class Item extends React.Component<Props> {
           <ImageLoader
             src={image}
             image={props => <PreviewImg {...props}/>} // change to your customized component
-            loading={() => <div>Loading...</div>}
-            error={() => <div>Error</div>}
+            loading={() => <Loading><Icon type="loading" /></Loading>}
+            error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"/>}
           />
         }>
         <BtnContainer>
