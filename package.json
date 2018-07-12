@@ -1,6 +1,6 @@
 {
   "name": "canner-image-gallery",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A image gallery for CannerIO",
   "homepage": "",
   "author": {
@@ -24,7 +24,6 @@
     "babel-core": "^6.14.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.3",
-    "babel-plugin-import": "^1.6.7",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
@@ -85,10 +84,10 @@
   "license": "MIT",
   "dependencies": {
     "@canner/image-service-config": "^0.3.0",
-    "@canner/image-upload": "^0.10.0",
+    "@canner/image-upload": "^0.12.0",
     "grid-breakpoint": "^1.6.2",
     "grid-draggable": "3.2.2",
-    "react-loading-image": "^0.3.0",
+    "react-loading-image": "^0.4.1",
     "styled-components": "^3.2.3"
   }
 }
