@@ -11,6 +11,16 @@ $ npm install --save canner-image-gallery
 
 ## Usage
 
+**IMPORTANT NOTE:** You need to import react-flexbox-grid's css in order to let it work correctly
+
+Or add
+
+```html
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/react-flexbox-grid@2.1.2/dist/react-flexbox-grid.css"/>
+```
+
+into your HTML.
+
 ```js
 import Gallery from 'canner-image-gallery';
 
