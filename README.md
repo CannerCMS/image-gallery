@@ -38,7 +38,7 @@ class Demo extends React.Component {
         onDelete={(i) => console.log(i)}
         onCreate={(item) => console.log(item)}
         onSwap={(from, to) => console.log(from, to)}
-        serviceConfig={new ImgurService({
+        imageStorage={new ImgurStorage({
           mashapeKey: '<mashapeKey>',
           clientId: '<clientId>'
         })}
@@ -60,7 +60,7 @@ class Demo extends React.Component {
 | onDelete | `(index: number) => void` | undefined | Called when the photo is deleted  |
 | onCreate | `({index: number, image: string} or Array<{index: number, image: string}>) => void` | undefined | Called when the photo is created  |
 | onSwap | `({fromIndex: number, toIndex: number}) => void` | undefined | Called when the photo is swapped  |
-| serviceConfig | depends on services | undefined | pass image configurations generate from: https://github.com/Canner/image-service-config |
+| imageStorage | depends on services | undefined | pass image configurations generate from: https://github.com/Canner/canner/tree/canary/packages/canner-storage |
 
 
 ## Start example server

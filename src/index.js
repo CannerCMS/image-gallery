@@ -5,7 +5,6 @@ import GridDraggable, { Section } from "grid-draggable";
 import {Modal} from 'antd';
 import GridBreakpoint from "grid-breakpoint";
 import ImageUpload from "@canner/image-upload";
-import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 import Item from "./item";
 import Add from "./add";
 
@@ -22,7 +21,7 @@ type Props = {
   onDelete?: (index: number) => void,
   onCreate?: (ImageItem | Array<ImageItem>) => void,
   onSwap?: (from: number, to: number) => void,
-  serviceConfig: ImageServiceConfig
+  imageStorage: any
 }
 
 type State = {
@@ -106,7 +105,7 @@ export default class Gallery extends React.Component<Props, State> {
 
   render() {
     const { editPopup, showContentPopup, currentContent } = this.state;
-    const { value, disableDrag, serviceConfig, renderContent, contentTitle } = this.props;
+    const { value, disableDrag, imageStorage, renderContent, contentTitle } = this.props;
     let list = value.map((item, i) => {
       if (disableDrag) {
         return (
@@ -174,7 +173,7 @@ export default class Gallery extends React.Component<Props, State> {
         <ImageUpload
           onChange={this.addImages}
           editPopup={editPopup}
-          serviceConfig={serviceConfig}
+          imageStorage={imageStorage}
           closeEditPopup={this.closeEditPopup}
           multiple={true}
         />
