@@ -2,7 +2,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Gallery from '../src';
-import {ImgurService} from "@canner/image-service-config";
+import {ImgurStorage} from "canner-storage";
 import 'antd/dist/antd.css';
 
 class Demo extends React.Component {
@@ -19,7 +19,7 @@ class Demo extends React.Component {
         onDelete={(i) => console.log(i)}
         onCreate={(item) => console.log(item)}
         onSwap={(from, to) => console.log(from, to)}
-        serviceConfig={new ImgurService({
+        serviceConfig={new ImgurStorage({
           mashapeKey: '<mashapeKey>',
           clientId: '<clientId>'
         })}
