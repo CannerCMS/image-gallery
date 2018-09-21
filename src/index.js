@@ -5,7 +5,6 @@ import GridDraggable, { Section } from "grid-draggable";
 import {Modal} from 'antd';
 import GridBreakpoint from "grid-breakpoint";
 import ImageUpload from "@canner/image-upload";
-import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 import Item from "./item";
 import Add from "./add";
 
@@ -22,7 +21,7 @@ type Props = {
   onDelete?: (index: number) => void,
   onCreate?: (ImageItem | Array<ImageItem>) => void,
   onSwap?: (from: number, to: number) => void,
-  serviceConfig: ImageServiceConfig
+  serviceConfig: Object
 }
 
 type State = {
