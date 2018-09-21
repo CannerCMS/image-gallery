@@ -78,12 +78,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@canner/image-upload@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.3.tgz#494583fd2aa2c2b70b74413bd0dacb7463c8e75e"
+"@canner/image-upload@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.4.tgz#a154d39486aee60f7562ff9ed506d9eb007f6cc1"
   dependencies:
     react-intl "^2.4.0"
-    react-loading-image "^0.4.1"
+    react-loading-image "^0.5.0"
     styled-components "^3.2.0"
 
 "@sindresorhus/is@^0.7.0":
@@ -7038,6 +7038,10 @@ react-lazy-load@^3.0.12:
 react-loading-image@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.4.1.tgz#084a7600a410c8c4c34e313ddd28781184a99992"
+
+react-loading-image@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.5.0.tgz#f5ab33c03763ea4c1b80f8293c22b057d299ff69"
 
 react-slick@~0.21.0:
   version "0.21.0"
