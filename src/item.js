@@ -75,7 +75,7 @@ export default class Item extends React.Component<Props> {
             </Button>
           )}
           <Button onClick={this.deleteImage} type="danger">
-            <Icon type="cross" />
+            <Icon type="delete" />
           </Button>
         </BtnContainer>
       </Card>
