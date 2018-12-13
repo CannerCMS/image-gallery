@@ -21,30 +21,40 @@ type Props = {
   onDelete?: (index: number) => void,
   onCreate?: (ImageItem | Array<ImageItem>) => void,
   onSwap?: (from: number, to: number) => void,
-  serviceConfig: Object
+  serviceConfig: Object,
+  grid: Object,
+  rowHeight: number
 }
 
 type State = {
   editPopup: boolean,
   showContentPopup: boolean,
-  currentContent: ?number
+  currentContent: ?number,
+  itemWidth: number
 }
 
 export default class Gallery extends React.Component<Props, State> {
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      editPopup: false,
-      showContentPopup: false,
-      currentContent: undefined
-    };
+  defaultGrid = {
+    lg: 4,
+    md: 4,
+    sm: 4,
+    xs: 12
   }
 
-  static defaultProps = {
-    value: [],
-    disableDrag: false
+  gallery = React.createRef();
+
+  state = {
+    editPopup: false,
+    showContentPopup: false,
+    currentContent: undefined,
+    itemWidth: 300
   };
+
+  componentDidMount() {
+    this.setState({
+      itemWidth: this.getItemWidth()
+    })
+  }
 
   onSwap = (fromKey: number, toKey: number) => {
     const {onSwap} = this.props
@@ -103,9 +113,24 @@ export default class Gallery extends React.Component<Props, State> {
     })
   }
 
+  getItemWidth = () => {
+    if (this.gallery.current) {
+      const containerWidth = this.gallery.current.offsetWidth;
+      const gridType = getGridType(containerWidth);
+      const grid = this.getGrid()[gridType];
+      return `${containerWidth / (12 / grid)}px`;
+    }
+    return `${300}px`;
+  }
+
+  getGrid = () => {
+    const {grid = {}} = this.props;
+    return {...this.defaultGrid, ...grid};
+  }
+
   render() {
-    const { editPopup, showContentPopup, currentContent } = this.state;
-    const { value, disableDrag, serviceConfig, renderContent, contentTitle } = this.props;
+    const { editPopup, showContentPopup, currentContent, itemWidth } = this.state;
+    const { value, disableDrag, serviceConfig, renderContent, contentTitle, rowHeight, imageStyle = {} } = this.props;
     let list = value.map((item, i) => {
       if (disableDrag) {
         return (
@@ -119,14 +144,13 @@ export default class Gallery extends React.Component<Props, State> {
           />
         );
       }
-
       return (
         <Section
           key={i}
           handle=".handle"
           dragStyle={{
-            width: '300px',
-            height: '200px',
+            width: itemWidth,
+            height: rowHeight,
             opacity: 0.4
           }}>
           <Item
@@ -136,6 +160,9 @@ export default class Gallery extends React.Component<Props, State> {
             deleteImage={this.deleteImage}
             id={i}
             key={i}
+            width={itemWidth}
+            height={rowHeight}
+            imageStyle={imageStyle}
           />
         </Section>
       );
@@ -143,15 +170,15 @@ export default class Gallery extends React.Component<Props, State> {
 
     list.push(<Add key="add" onClick={this.showEditPopup} />);
     return (
-      <div>
+      <div ref={this.gallery} style={{width: '100%'}}>
         {disableDrag ? (
-          <GridBreakpoint lg={4} md={4} sm={12} xs={12}>
+          <GridBreakpoint {...this.getGrid()}>
             {list}
           </GridBreakpoint>
         ) : (
           <GridDraggable
             onSwap={this.onSwap}
-            lg={4} md={4} sm={12} xs={12}>
+            {...this.getGrid()}>
             {list}
           </GridDraggable>
         )}
@@ -180,4 +207,14 @@ export default class Gallery extends React.Component<Props, State> {
       </div>
     );
   }
+}
+
+
+function getGridType(width: number) {
+  if (width > 1600) return 'xxl';
+  if (width > 1200) return 'xl';
+  if (width > 992) return 'lg';
+  if (width > 768) return 'md';
+  if (width > 576) return 'sm';
+  return 'xs';
 }

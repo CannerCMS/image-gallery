@@ -8,16 +8,19 @@ const PreviewImg = styled.div`
   margin-top: 15px;
   background-image: url(${props => props.src});
   width: 100%;
-  height: 200px;
+  height: ${props => props.height || '200px'};
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  ${props => Object.keys(props.imageStyle)
+    .reduce((pre, cur) => `${pre}${cur}:${props.imageStyle[cur]};`, '')
+  }
 `;
 
 const Loading = styled.div`
   margin-top: 15px;
   width: 100%;
-  height: 200px;
+  height: ${props => props.height || '200px'};
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -50,7 +53,7 @@ export default class Item extends React.Component<Props> {
   }
 
   render() {
-    const { image, disableDrag, showContent, id } = this.props;
+    const { image, disableDrag, showContent, id, width, height, imageStyle } = this.props;
     return (
       <Card
         hoverable
@@ -58,9 +61,9 @@ export default class Item extends React.Component<Props> {
         cover={
           <ImageLoader
             src={image}
-            image={props => <PreviewImg {...props}/>} // change to your customized component
-            loading={() => <Loading><Icon type="loading" /></Loading>}
-            error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"/>}
+            image={props => <PreviewImg {...props} width={width} height={height} imageStyle={imageStyle} />} // change to your customized component
+            loading={() => <Loading  width={width} height={height} ><Icon type="loading" /></Loading>}
+            error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"  width={width} height={height} imageStyle={imageStyle} />}
           />
         }>
         <BtnContainer>
