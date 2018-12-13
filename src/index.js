@@ -23,14 +23,15 @@ type Props = {
   onSwap?: (from: number, to: number) => void,
   serviceConfig: Object,
   grid: Object,
-  rowHeight: number
+  rowHeight: string, 
+  imageStyle: Object
 }
 
 type State = {
   editPopup: boolean,
   showContentPopup: boolean,
   currentContent: ?number,
-  itemWidth: number
+  itemWidth: string
 }
 
 export default class Gallery extends React.Component<Props, State> {
@@ -47,7 +48,7 @@ export default class Gallery extends React.Component<Props, State> {
     editPopup: false,
     showContentPopup: false,
     currentContent: undefined,
-    itemWidth: 300
+    itemWidth: '300px'
   };
 
   componentDidMount() {
@@ -141,6 +142,9 @@ export default class Gallery extends React.Component<Props, State> {
             deleteImage={this.deleteImage}
             id={i}
             key={i}
+            width={itemWidth}
+            height={rowHeight}
+            imageStyle={imageStyle}
           />
         );
       }
