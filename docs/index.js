@@ -23,13 +23,19 @@ class Demo extends React.Component {
           mashapeKey: '<mashapeKey>',
           clientId: '<clientId>'
         })}
+        grid={{sm: 4, md: 4, lg: 4}}
+        rowHeight="150px"
+        imageStyle={{
+          'background-size': 'cover',
+          'margin-top': '0px'
+        }}
       />
     );
   }
 }
 
 ReactDOM.render(
-  <div style={{maxWidth: '800px', margin: '0 auto'}}>
+  <div style={{maxWidth: 800, margin: '0 auto'}}>
     <h2>Gallery demo</h2>
     <hr/>
     <Demo/>
