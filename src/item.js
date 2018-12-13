@@ -39,7 +39,10 @@ type Props = {
   image: string,
   deleteImage: (id: number) => void,
   showContent?: (id: number) => void,
-  disableDrag: boolean
+  disableDrag: boolean,
+  width: string,
+  height: string,
+  imageStyle: Object
 }
 
 export default class Item extends React.Component<Props> {
@@ -61,6 +64,7 @@ export default class Item extends React.Component<Props> {
         cover={
           <ImageLoader
             src={image}
+            style={{}}
             image={props => <PreviewImg {...props} width={width} height={height} imageStyle={imageStyle} />} // change to your customized component
             loading={() => <Loading  width={width} height={height} ><Icon type="loading" /></Loading>}
             error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"  width={width} height={height} imageStyle={imageStyle} />}
