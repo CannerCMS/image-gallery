@@ -16,11 +16,14 @@ type ImageItem = {
 type Props = {
   value: Array<string>,
   disableDrag: boolean,
+  disableDelete: boolean,
+  disableEdit: boolean,
   contentTitle?: string,
   renderContent?: (index: number) => React.Element<*>,
   onDelete?: (index: number) => void,
   onCreate?: (ImageItem | Array<ImageItem>) => void,
   onSwap?: (from: number, to: number) => void,
+  onEdit?: (index: number) => void,
   serviceConfig: Object,
   grid: Object,
   rowHeight: string, 
@@ -131,15 +134,29 @@ export default class Gallery extends React.Component<Props, State> {
 
   render() {
     const { editPopup, showContentPopup, currentContent, itemWidth } = this.state;
-    const { value, disableDrag, serviceConfig, renderContent, contentTitle, rowHeight, imageStyle = {} } = this.props;
+    const {
+      value,
+      disableDrag,
+      disableDelete,
+      disableEdit,
+      serviceConfig,
+      renderContent,
+      contentTitle,
+      rowHeight,
+      imageStyle = {},
+      onEdit
+    } = this.props;
     let list = value.map((item, i) => {
       if (disableDrag) {
         return (
           <Item
             image={item}
             disableDrag={disableDrag}
+            disableDelete={disableDelete}
+            disableEdit={disableEdit}
             showContent={renderContent && this.showContent}
             deleteImage={this.deleteImage}
+            editImage={onEdit}
             id={i}
             key={i}
             width={itemWidth}
@@ -162,6 +179,9 @@ export default class Gallery extends React.Component<Props, State> {
             disableDrag={disableDrag}
             showContent={renderContent && this.showContent}
             deleteImage={this.deleteImage}
+            editImage={onEdit}
+            disableDelete={disableDelete}
+            disableEdit={disableEdit}
             id={i}
             key={i}
             width={itemWidth}

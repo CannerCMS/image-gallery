@@ -42,7 +42,10 @@ type Props = {
   disableDrag: boolean,
   width: string,
   height: string,
-  imageStyle: Object
+  imageStyle: Object,
+  disableDelete?: boolean,
+  disableEdit?: boolean,
+  editImage?: (id: number) => void
 }
 
 export default class Item extends React.Component<Props> {
@@ -56,7 +59,7 @@ export default class Item extends React.Component<Props> {
   }
 
   render() {
-    const { image, disableDrag, showContent, id, width, height, imageStyle } = this.props;
+    const { image, disableDrag, disableDelete, disableEdit, showContent, editImage, id, width, height, imageStyle } = this.props;
     return (
       <Card
         hoverable
@@ -76,14 +79,18 @@ export default class Item extends React.Component<Props> {
               <Icon type="swap" />
             </Button>
           )}
-          {showContent && (
-            <Button onClick={() => showContent(id)}>
+          {((editImage || showContent) && !disableEdit) && (
+            <Button onClick={editImage ? () => editImage(id) : () => showContent && showContent(id)}>
               <Icon type="edit" />
             </Button>
           )}
-          <Button onClick={this.deleteImage} type="danger">
-            <Icon type="delete" />
-          </Button>
+          {
+            !disableDelete && (
+              <Button onClick={this.deleteImage} type="danger">
+                <Icon type="delete" />
+              </Button>
+            )
+          }
         </BtnContainer>
       </Card>
     );
