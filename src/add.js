@@ -9,7 +9,7 @@ type Props = {
 
 const AddContainer = styled.div`
   width: 100%;
-	height: 292px;
+	height: 189px;
 	display: flex;
 	border: 1px dashed #CCC;
 	text-align: center;
@@ -21,7 +21,7 @@ export default class Add extends Component<Props> {
 
   render() {
     return (
-      <div style={{padding: '5px'}}>
+      <div style={{margin: '4px 2px'}}>
         <AddContainer onClick={this.props.onClick}>
           <Icon type="plus-circle" style={{fontSize: 60}}/>
         </AddContainer>

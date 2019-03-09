@@ -3,6 +3,7 @@ import * as React from "react";
 import ImageLoader from 'react-loading-image';
 import styled from 'styled-components';
 import { Card, Button, Icon } from "antd";
+const ButtonGroup = Button.Group;
 
 const PreviewImg = styled.div`
   margin-top: 15px;
@@ -28,10 +29,9 @@ const Loading = styled.div`
 
 const BtnContainer = styled.div`
   float: right;
-
-  button {
-    margin: 0 3px;
-  }
+  position: absolute;
+  top: 3px;
+  right: 3px;
 `;
 
 type Props = {
@@ -63,34 +63,34 @@ export default class Item extends React.Component<Props> {
     return (
       <Card
         hoverable
-        style={{margin: '5px'}}
-        cover={
-          <ImageLoader
-            src={image}
-            style={{}}
-            image={props => <PreviewImg {...props} width={width} height={height} imageStyle={imageStyle} />} // change to your customized component
-            loading={() => <Loading  width={width} height={height} ><Icon type="loading" /></Loading>}
-            error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"  width={width} height={height} imageStyle={imageStyle} />}
-          />
-        }>
+        style={{margin: '2px', position: 'relative'}}>
+        <ImageLoader
+          src={image}
+          style={{height}}
+          image={props => <PreviewImg {...props} width={width} height={height} imageStyle={imageStyle} />} // change to your customized component
+          loading={() => <Loading  width={width} height={height} ><Icon type="loading" /></Loading>}
+          error={() => <PreviewImg src="http://i.imgur.com/DUaZWMd.png"  width={width} height={height} imageStyle={imageStyle} />}
+        />
         <BtnContainer>
-          {!disableDrag && (
-            <Button type="primary" className="handle">
-              <Icon type="swap" />
-            </Button>
-          )}
-          {((editImage || showContent) && !disableEdit) && (
-            <Button onClick={editImage ? () => editImage(id) : () => showContent && showContent(id)}>
-              <Icon type="edit" />
-            </Button>
-          )}
-          {
-            !disableDelete && (
-              <Button onClick={this.deleteImage} type="danger">
-                <Icon type="delete" />
+          <ButtonGroup>
+            {!disableDrag && (
+              <Button type="primary" className="handle">
+                <Icon type="swap" />
               </Button>
-            )
-          }
+            )}
+            {((editImage || showContent) && !disableEdit) && (
+              <Button onClick={editImage ? () => editImage(id) : () => showContent && showContent(id)}>
+                <Icon type="edit" />
+              </Button>
+            )}
+            {
+              !disableDelete && (
+                <Button onClick={this.deleteImage} type="danger">
+                  <Icon type="delete" />
+                </Button>
+              )
+            }
+          </ButtonGroup>
         </BtnContainer>
       </Card>
     );
