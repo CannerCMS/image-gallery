@@ -192,7 +192,7 @@ export default class Gallery extends React.Component<Props, State> {
       );
     });
 
-    list.push(<Add key="add" onClick={this.showEditPopup} />);
+    list.push(<Add key="add" onClick={this.showEditPopup} rowHeight={rowHeight}/>);
     return (
       <div ref={this.gallery} style={{width: '100%'}}>
         {disableDrag ? (
