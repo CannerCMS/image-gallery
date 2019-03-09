@@ -21,7 +21,7 @@ export default class Add extends Component<Props> {
   render() {
     const {rowHeight} = this.props;
     return (
-      <div style={{margin: '4px 2px', padding: '18px 0', border: '1px dashed #CCC'}}>
+      <div style={{margin: '4px 2px', padding: '23px 0', border: '1px dashed #CCC'}}>
         <AddContainer onClick={this.props.onClick} rowHeight={rowHeight}>
           <Icon type="plus-circle" style={{fontSize: 60}}/>
         </AddContainer>
